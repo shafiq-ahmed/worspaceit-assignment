@@ -29,23 +29,23 @@ public class WorkspaceCompany {
     public void addEmployee(){
         Scanner scanner=new Scanner(System.in);
         String userInput="";
-        while(!userInput.equals("0")){
 
-            System.out.println("Please select a type of Employee: 1.Permanent  2.Temporary  3.Contractual or 0.Exit");
+
+            String empName="";
+            int empSalary=0;
+
+            System.out.print("Employee name: ");
+            empName= scanner.nextLine();
+            System.out.print("Employee Salary: ");
+            empSalary= scanner.nextInt();
+
+            System.out.println("Please select a type for this Employee: 1.Permanent  2.Temporary  3.Contractual ");
             userInput = scanner.next();
             if(userInput.equals("1")){
-                String empName="";
-                int empSalary=0;
                 Employee emp=new PermamentEmployee();
                 scanner.nextLine();//to consume the newline
-                System.out.print("Employee name: ");
-                empName= scanner.nextLine();
-                System.out.print("Employee Salary: ");
-                empSalary= scanner.nextInt();
-                emp.setName(empName);
-                emp.setSalary(empSalary);
-                emp.setId(totalEmployees++);
-                this.Employees.add(emp);
+                setEmployee(empName,empSalary,emp);
+
             }else if(userInput.equals("2")){
 
             }else if(userInput.equals("3")){
@@ -53,10 +53,18 @@ public class WorkspaceCompany {
             }else if(!userInput.equals("0"))
                 System.out.println("Invalid Input");
         }
-    }
+
 
     public void printEmployees(){
         for (int i = 0; i < Employees.size(); i++)
             System.out.print(Employees.get(i) + " ");
+    }
+
+    public void setEmployee(String name, int salary, Employee emp){
+
+        emp.setName(name);
+        emp.setSalary(salary);
+        emp.setId(totalEmployees++);
+        this.Employees.add(emp);
     }
 }
