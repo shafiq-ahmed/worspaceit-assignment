@@ -20,9 +20,9 @@ public class User {
     @Override
     public String toString() {
         return  "accountNumber=" + accountNumber +
-                "name='" + name + '\'' +
-                "alance=" + balance +
-                "password='" + password + '\'' +
+                "name='" + name + '\n' +
+                "alance=" + balance +'\n' +
+                "password='" + password + '\n' +
                 "transactionHistory=" + transactionHistory +
                 '}';
     }
