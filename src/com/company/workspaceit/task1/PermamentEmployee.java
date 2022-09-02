@@ -1,6 +1,6 @@
 package com.company.workspaceit.task1;
 
-public class PermamentEmployee extends Employee implements Applicable{
+public class PermamentEmployee extends Employee  {
     @Override
     public int getBonus() {
         return this.getSalary()/2;
@@ -10,6 +10,11 @@ public class PermamentEmployee extends Employee implements Applicable{
     public boolean isEligibleForProvidentFund() {
 
         return true;
+    }
+
+    @Override
+    public String getEmployeeType() {
+        return "Permanent";
     }
 
 }

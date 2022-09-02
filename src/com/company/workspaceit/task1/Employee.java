@@ -1,6 +1,6 @@
 package com.company.workspaceit.task1;
 
-public class Employee {
+public class Employee implements Applicable{
     private int id;
     private String name;
     private int salary;
@@ -29,6 +29,9 @@ public class Employee {
         this.salary = salary;
     }
 
+    public String getEmployeeType(){
+        return "No type designated";
+    };
     @Override
     public String toString() {
         return "Employee{" +
@@ -36,5 +39,16 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", salary=" + salary +
                 '}';
+    }
+
+
+    @Override
+    public int getBonus() {
+        return 0;
+    }
+
+    @Override
+    public boolean isEligibleForProvidentFund() {
+        return false;
     }
 }

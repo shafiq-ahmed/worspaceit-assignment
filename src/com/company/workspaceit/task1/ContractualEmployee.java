@@ -1,6 +1,6 @@
 package com.company.workspaceit.task1;
 
-public class ContractualEmployee extends Employee implements Applicable{
+public class ContractualEmployee extends Employee {
 
 
     @Override
@@ -11,5 +11,10 @@ public class ContractualEmployee extends Employee implements Applicable{
     @Override
     public boolean isEligibleForProvidentFund() {
         return false;
+    }
+
+    @Override
+    public String getEmployeeType() {
+        return "Contractual";
     }
 }

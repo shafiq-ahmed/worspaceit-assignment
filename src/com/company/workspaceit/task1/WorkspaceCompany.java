@@ -1,11 +1,12 @@
 package com.company.workspaceit.task1;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class WorkspaceCompany {
-    List<Employee> Employees= new ArrayList<Employee>(5);
+    private static List<Employee> Employees= new ArrayList<Employee>(5);
     private static int totalEmployees=0;
 
     public void StartProcess(){
@@ -37,7 +38,13 @@ public class WorkspaceCompany {
             System.out.print("Employee name: ");
             empName= scanner.nextLine();
             System.out.print("Employee Salary: ");
-            empSalary= scanner.nextInt();
+            try{
+                empSalary= scanner.nextInt();
+            }catch (InputMismatchException e){
+                System.out.println("Invalid Input");
+                return;
+            }
+
 
             System.out.println("Please select a type for this Employee: 1.Permanent  2.Temporary  3.Contractual ");
             userInput = scanner.next();
@@ -47,24 +54,41 @@ public class WorkspaceCompany {
                 setEmployee(empName,empSalary,emp);
 
             }else if(userInput.equals("2")){
-
+                Employee emp=new TemporaryEmployee();
+                scanner.nextLine();//to consume the newline
+                setEmployee(empName,empSalary,emp);
             }else if(userInput.equals("3")){
-
-            }else if(!userInput.equals("0"))
-                System.out.println("Invalid Input");
+                Employee emp=new ContractualEmployee();
+                scanner.nextLine();//to consume the newline
+                setEmployee(empName,empSalary,emp);
+            }
         }
 
 
     public void printEmployees(){
-        for (int i = 0; i < Employees.size(); i++)
-            System.out.print(Employees.get(i) + " ");
+        if(totalEmployees<=0){
+            System.out.println("There are no employees in this company");
+            return;
+        }
+
+        Employee emp= new Employee();
+        System.out.println(totalEmployees);
+        for (int i = 0; i < totalEmployees; i++) {
+            emp = Employees.get(i);
+            System.out.println("Name: " + emp.getName());
+            System.out.println("ID: " + emp.getId());
+            System.out.println("Salary: " + emp.getSalary());
+            System.out.println("Employee Type: " + emp.getEmployeeType());
+            System.out.println("Eid bonus: " + emp.getBonus());
+            System.out.println("Emplyee is eligible for providend fund: " + emp.isEligibleForProvidentFund());
+        }
     }
 
     public void setEmployee(String name, int salary, Employee emp){
 
         emp.setName(name);
         emp.setSalary(salary);
-        emp.setId(totalEmployees++);
-        this.Employees.add(emp);
+        emp.setId(++totalEmployees);
+        Employees.add(emp);
     }
 }

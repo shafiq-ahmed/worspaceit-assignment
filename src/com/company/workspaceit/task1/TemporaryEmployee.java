@@ -1,6 +1,6 @@
 package com.company.workspaceit.task1;
 
-public class TemporaryEmployee extends Employee implements Applicable{
+public class TemporaryEmployee extends Employee {
     @Override
     public int getBonus() {
         return 0;
@@ -9,5 +9,10 @@ public class TemporaryEmployee extends Employee implements Applicable{
     @Override
     public boolean isEligibleForProvidentFund() {
         return false;
+    }
+
+    @Override
+    public String getEmployeeType() {
+        return "Temporary";
     }
 }
