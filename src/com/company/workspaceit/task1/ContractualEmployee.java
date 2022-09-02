@@ -1,6 +1,6 @@
 package com.company.workspaceit.task1;
 
-public class ContractualEmployee extends Employee {
+public class ContractualEmployee extends Employee implements Applicable{
 
 
     @Override

@@ -11,7 +11,6 @@ public class WorkspaceCompany {
 
     public void StartProcess(){
         String userInput="";
-        System.out.println("hello");
         while(!userInput.equals("3")) {
             System.out.println("Select operation: 1.Add Employee  2.Print Employee Information 3.Exit");
             Scanner scanner = new Scanner(System.in);
@@ -70,17 +69,18 @@ public class WorkspaceCompany {
             System.out.println("There are no employees in this company");
             return;
         }
-
+        Applicable app;
         Employee emp= new Employee();
         System.out.println(totalEmployees);
         for (int i = 0; i < totalEmployees; i++) {
+            app=(Applicable) Employees.get(i);
             emp = Employees.get(i);
             System.out.println("Name: " + emp.getName());
             System.out.println("ID: " + emp.getId());
             System.out.println("Salary: " + emp.getSalary());
             System.out.println("Employee Type: " + emp.getEmployeeType());
-            System.out.println("Eid bonus: " + emp.getBonus());
-            System.out.println("Emplyee is eligible for providend fund: " + emp.isEligibleForProvidentFund());
+            System.out.println("Eid bonus: " + app.getBonus());
+            System.out.println("Emplyee is eligible for providend fund: " + app.isEligibleForProvidentFund());
         }
     }
 
