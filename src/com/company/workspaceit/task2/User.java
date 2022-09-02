@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
     private int accountNumber;
     private String name;
     private int balance;
@@ -19,9 +23,9 @@ public class User {
 
     @Override
     public String toString() {
-        return  "accountNumber=" + accountNumber +
+        return  "accountNumber=" + accountNumber + '\n' +
                 "name='" + name + '\n' +
-                "alance=" + balance +'\n' +
+                "balance=" + balance +'\n' +
                 "password='" + password + '\n' +
                 "transactionHistory=" + transactionHistory +
                 '}';

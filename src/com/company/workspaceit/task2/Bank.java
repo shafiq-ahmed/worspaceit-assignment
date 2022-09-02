@@ -12,12 +12,18 @@ public class Bank {
         String userInput="";
         while(!userInput.equals("0")) {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Select operation: 1.Add user  2.Print all users 0.Exit");
+            System.out.println("Select operation: 1.Add user  2.Print all users 3.Find User 0.Exit");
             userInput = scanner.next();
             if (userInput.equals("1")) {
                 addUser();
             } else if (userInput.equals("2")) {
                 printAllUsers();
+            } else if(userInput.equals("3")){
+                scanner.nextLine();//to consume the newline
+                System.out.println("Enter user account number: ");
+                userInput=scanner.nextLine();
+
+                System.out.println(getUser(Integer.parseInt(userInput)));
             }
         }
 
@@ -39,15 +45,32 @@ public class Bank {
 
         User user= new User(generateAccountNumber(),name,deposit,password);
         users.add(user);
+        totalUsers++;
 
     }
 
     public int generateAccountNumber(){
-        return totalUsers++;
+        if(totalUsers<=0){
+            return 1001;
+        }else {
+          int accountNumber= users.get(users.size()-1).getAccountNumber();
+          return ++accountNumber;
+        }
     }
     public void printAllUsers(){
         for(int i=0;i<users.size();i++){
             System.out.println(users.get(i));
         }
+    }
+
+    public User getUser(int accountNumber){
+        User user;
+        for(int i=0;i<users.size();i++){
+            user=users.get(i);
+            if(user.getAccountNumber()==accountNumber){
+                return user;
+            }
+        }
+        return null;
     }
 }
