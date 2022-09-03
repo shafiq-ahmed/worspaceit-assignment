@@ -61,12 +61,16 @@ public class Bank {
             if(passwordIsValid(user,userInput)){
 
                 while(!userInput.equals("0")) {
-                    System.out.println("Select operation: 1.Withdraw  2.Deposit   0.Exit");
+                    System.out.println("Select operation: 1.Withdraw  2.Deposit  3.View Account Details  4.View transaction History  0.Exit");
                     userInput = scanner.next();
                     if (userInput.equals("1")) {
                         makeWithdrawal(user);
                     } else if (userInput.equals("2")) {
                         makeDeposit(user);
+                    } else if (userInput.equals("3")) {
+                        System.out.println(user);
+                    }else if (userInput.equals("4")) {
+                        viewUserTransactionHistory(user);
                     } else if (userInput.equals("0")) {
                         break;
                     }else {
@@ -82,7 +86,12 @@ public class Bank {
         }
 
     }
-
+    public void viewUserTransactionHistory(User user){
+        List<String> transactions= user.getTransactionHistory();
+        for(int i=0;i<transactions.size();i++){
+            System.out.println(transactions.get(i));
+        }
+    }
     public void addUser(){
         Scanner scanner= new Scanner(System.in);
         String name;
@@ -91,13 +100,14 @@ public class Bank {
 
         System.out.println("Enter name: ");
         name=scanner.nextLine();
-        System.out.println("Enter deposit: ");
-        deposit=scanner.nextInt();
-        scanner.nextLine();//to consume the newline
+//        System.out.println("Enter deposit: ");
+//        deposit=scanner.nextInt();
+        //scanner.nextLine();//to consume the newline
         System.out.println("Enter password: ");
         password=scanner.nextLine();
 
-        User user= new User(generateAccountNumber(),name,deposit,password);
+        User user= new User(generateAccountNumber(),name,password);
+        makeDeposit(user);
         users.add(user);
         totalUsers++;
         System.out.println("User entry successfull");

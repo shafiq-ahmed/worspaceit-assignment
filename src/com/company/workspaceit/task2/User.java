@@ -14,13 +14,15 @@ public class User {
     private String password;
     private List<String> transactionHistory= new ArrayList<>(3);
 
-    public User(int accountNumber, String name, int initialDeposit, String password) {
+    public User(int accountNumber, String name,  String password) {
         this.accountNumber = accountNumber;
         this.name = name;
-        this.balance = initialDeposit;
         this.password = password;
     }
 
+    public void addTransaction(Transaction transaction){
+        transactionHistory.add(transaction.toString());
+    }
     @Override
     public String toString() {
         return  "AccountNumber= " + accountNumber + '\n' +
