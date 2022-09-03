@@ -15,6 +15,11 @@ public class TransactionManager {
     }
 
     public void deposit(User user, int amount){
-
+        if(amount>=500){
+            user.setBalance(user.getBalance()+amount);
+            System.out.println("Deposit successfull! \nYour current balance: "+user.getBalance());
+        }else{
+            System.out.println("Minimum deposit amount is Tk.500 ");
+        }
     }
 }

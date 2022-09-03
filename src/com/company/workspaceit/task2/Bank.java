@@ -20,7 +20,6 @@ public class Bank {
             System.out.println("Select operation: 1.Bank Operations  2.User Operations  0.Exit");
             userInput = scanner.nextLine();
             if (userInput.equals("1")) {
-                System.out.println("here 1");
                 bankOperations();
             } else if (userInput.equals("2")) {
                 userOperations();
@@ -36,9 +35,7 @@ public class Bank {
     public void bankOperations(){
         String userInput="";
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Here 2");
         while(!userInput.equals("0")) {
-            System.out.println("Here 3");
             System.out.println("Select operation: 1.Add user  2.Print all users   0.Exit");
             userInput = scanner.nextLine();
             if (userInput.equals("1")) {
