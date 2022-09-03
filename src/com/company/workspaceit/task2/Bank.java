@@ -6,11 +6,13 @@ import java.util.Scanner;
 /*TODO
 1. Validate all empty string inputs
 2. validate minimum string length
+3. account is still created when initial deposit fails
 * */
 public class Bank {
     private static int totalUsers=0;
     private static List<User> users=new ArrayList<User>(5);
     private static TransactionManager transactionManager= new TransactionManager();
+
 
     public void startProcess(){
         String userInput="";
@@ -61,7 +63,7 @@ public class Bank {
             if(passwordIsValid(user,userInput)){
 
                 while(!userInput.equals("0")) {
-                    System.out.println("Select operation: 1.Withdraw  2.Deposit  3.View Account Details  4.View transaction History  0.Exit");
+                    System.out.println("Select operation: 1.Withdraw  2.Deposit  3.View Account Details  4.View transaction History  5.Transfer  0.Exit");
                     userInput = scanner.next();
                     if (userInput.equals("1")) {
                         makeWithdrawal(user);
@@ -71,6 +73,8 @@ public class Bank {
                         System.out.println(user);
                     }else if (userInput.equals("4")) {
                         viewUserTransactionHistory(user);
+                    }else if (userInput.equals("5")) {
+                       makeTransfer(user);
                     } else if (userInput.equals("0")) {
                         break;
                     }else {
@@ -146,14 +150,40 @@ public class Bank {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter amount to be withdrawn: ");
         int amount=scanner.nextInt();
-        transactionManager.withdraw(user,amount);
+        if(transactionManager.withdraw(user,amount)){
+            System.out.println("Withdraw successfull!");
+        }else{
+            System.out.println("Insufficient funds. You must have taka 500 leftover in your account");
+
+        }
+        System.out.println("Your current balance: "+user.getBalance());
 
     }
     public void makeDeposit(User user){
         Scanner scanner= new Scanner(System.in);
         System.out.println("Enter amount to deposit: ");
         int amount=scanner.nextInt();
-        transactionManager.deposit(user,amount);
+        if(transactionManager.deposit(user,amount)){
+            System.out.println("Deposit successfull! \nYour current balance: "+user.getBalance());
+        }else{
+            System.out.println("Minimum deposit amount is Tk.500 ");
+        }
+
+    }
+
+    public void makeTransfer(User owner){
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Enter receiver account number:");
+        String userInput=scanner.nextLine();
+        User receiver=getUser(Integer.parseInt(userInput));
+        if(receiver!=null){
+            System.out.println("Enter amount: ");
+            int amount = scanner.nextInt();
+            transactionManager.transfer(owner,receiver,amount);
+            System.out.println("Your current balance: "+owner.getBalance());
+        }else{
+            System.out.println("Account does not exist");
+        }
 
     }
 }
