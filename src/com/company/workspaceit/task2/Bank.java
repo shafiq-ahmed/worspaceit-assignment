@@ -1,12 +1,16 @@
 package com.company.workspaceit.task2;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 /*TODO
 1. Validate all empty string inputs
 2. validate minimum string length
 3. account is still created when initial deposit fails
+4.check for negative integer value
+4.deposit amount, account number during login (2
+numberformat)
 * */
 public class Bank {
     private static int totalUsers=0;
@@ -51,16 +55,24 @@ public class Bank {
             }
         }
     }
-    public void userOperations(){
+    public void userOperations()  {
         String userInput="";
+        int accountNumber;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter user account number: ");
-        userInput=scanner.nextLine();
-        User user=getUser(Integer.parseInt(userInput));
+        try {
+            accountNumber = scanner.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println("Invalid Input");
+            return;
+        }
+        User user=getUser(accountNumber);
         if(user!=null){
+            String accountPassword="";
+            scanner.nextLine();//to consume the newline
             System.out.println("Enter user account password: ");
-            userInput=scanner.nextLine();
-            if(passwordIsValid(user,userInput)){
+            accountPassword=scanner.nextLine();
+            if(passwordIsValid(user,accountPassword)){
 
                 while(!userInput.equals("0")) {
                     System.out.println("Select operation: 1.Withdraw  2.Deposit  3.View Account Details  4.View transaction History  5.Transfer  0.Exit");
@@ -99,7 +111,7 @@ public class Bank {
     public void addUser(){
         Scanner scanner= new Scanner(System.in);
         String name;
-        String password;
+        String accountPassword;
         int deposit;
 
         System.out.println("Enter name: ");
@@ -112,15 +124,20 @@ public class Bank {
             return;
         }
         System.out.println("Enter deposit: ");
-        deposit=scanner.nextInt();
+        try {
+            deposit = scanner.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println("Invlid input");
+            return;
+        }
         scanner.nextLine();//to consume the newline
         System.out.println("Enter password: ");
-        password=scanner.nextLine();
-        if(password.isBlank()){
+        accountPassword=scanner.nextLine();
+        if(accountPassword.isBlank()){
             System.out.println("Invalid Input");
             return;
         }
-        User user= new User(generateAccountNumber(),name,password);
+        User user= new User(generateAccountNumber(),name,accountPassword);
         if(!transactionManager.deposit(user,deposit)){
             System.out.println("Deposit amount is minimum Tk.500");
             return;
@@ -178,8 +195,14 @@ public class Bank {
     }
     public void makeDeposit(User user){
         Scanner scanner= new Scanner(System.in);
+        int amount;
         System.out.println("Enter amount to deposit: ");
-        int amount=scanner.nextInt();
+        try {
+            amount = scanner.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input");
+            return;
+        }
         if(transactionManager.deposit(user,amount)){
             System.out.println("Deposit successfull! \nYour current balance: "+user.getBalance());
         }else{
@@ -190,9 +213,15 @@ public class Bank {
 
     public void makeTransfer(User owner){
         Scanner scanner=new Scanner(System.in);
+        int accountNUmber;
         System.out.println("Enter receiver account number:");
-        String userInput=scanner.nextLine();
-        User receiver=getUser(Integer.parseInt(userInput));
+        try {
+            accountNUmber = scanner.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input");
+            return;
+        }
+        User receiver=getUser(accountNUmber);
         if(receiver!=null){
             System.out.println("Enter amount: ");
             int amount = scanner.nextInt();
