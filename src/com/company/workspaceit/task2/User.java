@@ -23,11 +23,47 @@ public class User {
 
     @Override
     public String toString() {
-        return  "accountNumber=" + accountNumber + '\n' +
-                "name='" + name + '\n' +
-                "balance=" + balance +'\n' +
-                "password='" + password + '\n' +
-                "transactionHistory=" + transactionHistory +
-                '}';
+        return  "AccountNumber= " + accountNumber + '\n' +
+                "Name= " + name + '\n' +
+                "Balance= " + balance +'\n' +
+                "Password= " + password + '\n'
+
+                ;
+    }
+
+    public void setAccountNumber(int accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<String> getTransactionHistory() {
+        return transactionHistory;
+    }
+
+    public void setTransactionHistory(List<String> transactionHistory) {
+        this.transactionHistory = transactionHistory;
     }
 }
