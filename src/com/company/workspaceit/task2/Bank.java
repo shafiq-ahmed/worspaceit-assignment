@@ -179,8 +179,17 @@ public class Bank {
     }
     public void makeWithdrawal(User user){
         Scanner scanner = new Scanner(System.in);
+        int amount=0;
         System.out.println("Enter amount to be withdrawn: ");
-        int amount=scanner.nextInt();
+        try {
+            amount = scanner.nextInt();
+            if(amount<=0){
+                System.out.println("Invalid amount");
+                return;
+            }
+        }catch (InputMismatchException e){
+            System.out.println("Invalid input");
+        }
         try {
             if (transactionManager.withdraw(user, amount)) {
                 System.out.println("Withdraw successfull!");

@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-    public int getAccountNumber() {
-        return accountNumber;
-    }
-
     private int accountNumber;
     private String name;
     private int balance;
@@ -31,6 +27,9 @@ public class User {
                 "Password= " + password + '\n'
 
                 ;
+    }
+    public int getAccountNumber() {
+        return accountNumber;
     }
 
     public void setAccountNumber(int accountNumber) {
