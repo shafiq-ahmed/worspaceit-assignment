@@ -3,7 +3,7 @@ package com.company.workspaceit.task2;
 public class TransactionManager {
 
 
-    public void deposit(User user, int amount){
+    public void withdraw(User user, int amount){
         if(user.getBalance()-amount>=500){
             user.setBalance(user.getBalance()-amount);
             System.out.println("Withdraw successfull!");
@@ -12,5 +12,9 @@ public class TransactionManager {
 
         }
         System.out.println("Your current balance: "+user.getBalance());
+    }
+
+    public void deposit(User user, int amount){
+
     }
 }
