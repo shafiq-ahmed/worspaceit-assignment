@@ -104,14 +104,28 @@ public class Bank {
 
         System.out.println("Enter name: ");
         name=scanner.nextLine();
-//        System.out.println("Enter deposit: ");
-//        deposit=scanner.nextInt();
-        //scanner.nextLine();//to consume the newline
+        if(name.isBlank()){
+            System.out.println("Invalid Input");
+            return;
+        }else if(name.length()<3){
+            System.out.println("Name must be at least 3 characters long");
+            return;
+        }
+        System.out.println("Enter deposit: ");
+        deposit=scanner.nextInt();
+        scanner.nextLine();//to consume the newline
         System.out.println("Enter password: ");
         password=scanner.nextLine();
-
+        if(password.isBlank()){
+            System.out.println("Invalid Input");
+            return;
+        }
         User user= new User(generateAccountNumber(),name,password);
-        makeDeposit(user);
+        if(!transactionManager.deposit(user,deposit)){
+            System.out.println("Deposit amount is minimum Tk.500");
+            return;
+            //return if deposit is not accepted
+        }
         users.add(user);
         totalUsers++;
         System.out.println("User entry successfull");
@@ -150,10 +164,13 @@ public class Bank {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter amount to be withdrawn: ");
         int amount=scanner.nextInt();
-        if(transactionManager.withdraw(user,amount)){
-            System.out.println("Withdraw successfull!");
-        }else{
-            System.out.println("Insufficient funds. You must have taka 500 leftover in your account");
+        try {
+            if (transactionManager.withdraw(user, amount)) {
+                System.out.println("Withdraw successfull!");
+            }
+        }catch (InsufficientFundsException e){
+            System.out.println(e.getMessage());
+            e.printStackTrace();
 
         }
         System.out.println("Your current balance: "+user.getBalance());
