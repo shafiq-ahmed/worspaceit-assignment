@@ -159,6 +159,10 @@ public class Bank {
         }
     }
     public void printAllUsers(){
+        if(totalUsers<=0){
+            System.out.println("There are no users in the bank");
+            return;
+        }
         for(int i=0;i<users.size();i++){
             System.out.println(users.get(i));
         }
@@ -189,6 +193,7 @@ public class Bank {
             }
         }catch (InputMismatchException e){
             System.out.println("Invalid input");
+            return;
         }
         try {
             if (transactionManager.withdraw(user, amount)) {
@@ -233,7 +238,17 @@ public class Bank {
         User receiver=getUser(accountNUmber);
         if(receiver!=null){
             System.out.println("Enter amount: ");
-            int amount = scanner.nextInt();
+            int amount=0;
+            try {
+                amount = scanner.nextInt();
+            }catch (InputMismatchException e){
+                System.out.println("Invalid input");
+                return;
+            }
+            if(amount<=0){
+                System.out.println("Invalid amount");
+                return;
+            }
             transactionManager.transfer(owner,receiver,amount);
             System.out.println("Your current balance: "+owner.getBalance());
         }else{

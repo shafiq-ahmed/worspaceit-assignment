@@ -29,38 +29,43 @@ public class WorkspaceCompany {
     public void addEmployee(){
         Scanner scanner=new Scanner(System.in);
         String userInput="";
+        String empName="";
+        int empSalary=0;
+
+        System.out.print("Employee name: ");
+        empName= scanner.nextLine();
+        if(empName.isBlank()){
+            System.out.println("Invalid input");
+            return;
+        }else if(empName.length()<3){
+            System.out.println("Name must be at least 3 characters");
+            return;
+        }
+        System.out.print("Employee Salary: ");
+        try{
+            empSalary= scanner.nextInt();
+        }catch (InputMismatchException e){
+            System.out.println("Invalid Input");
+            return;
+        }
 
 
-            String empName="";
-            int empSalary=0;
+        System.out.println("Please select a type for this Employee: 1.Permanent  2.Temporary  3.Contractual ");
+        userInput = scanner.next();
+        if(userInput.equals("1")){
+            Employee emp=new PermamentEmployee();
+            scanner.nextLine();//to consume the newline
+            setEmployee(empName,empSalary,emp);
 
-            System.out.print("Employee name: ");
-            empName= scanner.nextLine();
-            System.out.print("Employee Salary: ");
-            try{
-                empSalary= scanner.nextInt();
-            }catch (InputMismatchException e){
-                System.out.println("Invalid Input");
-                return;
-            }
-
-
-            System.out.println("Please select a type for this Employee: 1.Permanent  2.Temporary  3.Contractual ");
-            userInput = scanner.next();
-            if(userInput.equals("1")){
-                Employee emp=new PermamentEmployee();
-                scanner.nextLine();//to consume the newline
-                setEmployee(empName,empSalary,emp);
-
-            }else if(userInput.equals("2")){
-                Employee emp=new TemporaryEmployee();
-                scanner.nextLine();//to consume the newline
-                setEmployee(empName,empSalary,emp);
-            }else if(userInput.equals("3")){
-                Employee emp=new ContractualEmployee();
-                scanner.nextLine();//to consume the newline
-                setEmployee(empName,empSalary,emp);
-            }
+        }else if(userInput.equals("2")){
+            Employee emp=new TemporaryEmployee();
+            scanner.nextLine();//to consume the newline
+            setEmployee(empName,empSalary,emp);
+        }else if(userInput.equals("3")){
+            Employee emp=new ContractualEmployee();
+            scanner.nextLine();//to consume the newline
+            setEmployee(empName,empSalary,emp);
+        }
         }
 
 
@@ -81,6 +86,7 @@ public class WorkspaceCompany {
             System.out.println("Employee Type: " + emp.getEmployeeType());
             System.out.println("Eid bonus: " + app.getBonus());
             System.out.println("Emplyee is eligible for providend fund: " + app.isEligibleForProvidentFund());
+            System.out.println();
         }
     }
 
