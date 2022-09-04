@@ -69,7 +69,7 @@ Select operation: 1.Bank Operations  2.User Operations  0.Exit
 1
 Select operation: 1.Add user  2.Print all users   0.Exit
 
-**Blank input
+Blank input
 Select operation: 1.Add user  2.Print all users   0.Exit
 
 Invalid Input
@@ -93,7 +93,7 @@ r
 Name must be at least 3 characters long
 Select operation: 1.Add user  2.Print all users   0.Exit
 
-**4Deposit amount inpu type validation
+Deposit amount input type validation
 Select operation: 1.Add user  2.Print all users   0.Exit
 1
 Enter name:
@@ -262,7 +262,7 @@ Transaction Amount: 900
 Balance: 1600
 
 
-***Transaction recorded on both receiver and sender account history
+Transaction recorded on both receiver and sender account history
 Select operation: 1.Bank Operations  2.User Operations  0.Exit
 2
 Enter user account number:
@@ -344,7 +344,7 @@ Transaction Type: Debit
 Transaction Amount: 900
 Balance: 15000
 
-</pre>>
+</pre>
 
 
 
