@@ -48,6 +48,10 @@ public class WorkspaceCompany {
             System.out.println("Invalid Input");
             return;
         }
+        if(empSalary<=0){
+            System.out.println("Invalid amount");
+            return;
+        }
 
 
         System.out.println("Please select a type for this Employee: 1.Permanent  2.Temporary  3.Contractual ");
