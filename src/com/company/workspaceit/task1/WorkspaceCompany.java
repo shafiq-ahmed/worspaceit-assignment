@@ -20,7 +20,7 @@ public class WorkspaceCompany {
             }else if(userInput.equals("2")){
                 printEmployees();
             }else if(userInput.equals("3")){
-
+                break;
             }else System.out.println("Invalid Input");
 
         }
@@ -78,18 +78,17 @@ public class WorkspaceCompany {
             System.out.println("There are no employees in this company");
             return;
         }
-        Applicable app;
+        Applicable applicable;
         Employee emp= new Employee();
-        System.out.println(totalEmployees);
         for (int i = 0; i < totalEmployees; i++) {
-            app=(Applicable) Employees.get(i);
+            applicable=(Applicable) Employees.get(i);
             emp = Employees.get(i);
             System.out.println("Name: " + emp.getName());
             System.out.println("ID: " + emp.getId());
             System.out.println("Salary: " + emp.getSalary());
             System.out.println("Employee Type: " + emp.getEmployeeType());
-            System.out.println("Eid bonus: " + app.getBonus());
-            System.out.println("Emplyee is eligible for providend fund: " + app.isEligibleForProvidentFund());
+            System.out.println("Eid bonus: " + applicable.getBonus());
+            System.out.println("Emplyee is eligible for providend fund: " + applicable.isEligibleForProvidentFund());
             System.out.println();
         }
     }

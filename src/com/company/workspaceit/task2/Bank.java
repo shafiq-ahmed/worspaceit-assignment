@@ -4,14 +4,7 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
-/*TODO
-1. Validate all empty string inputs
-2. validate minimum string length
-3. account is still created when initial deposit fails
-4.check for negative integer value
-4.deposit amount, account number during login (2
-numberformat)
-* */
+
 public class Bank {
     private static int totalUsers=0;
     private static List<User> users=new ArrayList<User>(5);
